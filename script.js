@@ -4,6 +4,7 @@ const button1 = document.querySelector('.button1');
 const button2 = document.querySelector('.button2');
 const dashMother = document.createElement('div');
 const div = document.querySelectorAll('div');
+
 dashMother.classList.add('dashmother');
 body.appendChild(dashMother);
 let sampleWords = ['apple', 'banana', 'fox', 'trespassing', 'tranquility', 'helpless', 'wizard'];
@@ -21,7 +22,7 @@ button1.addEventListener('click', function () {
         timerElement.textContent = time;
         time++;
 
-        if (time == 60) {
+        if (time === 60) {
             clearInterval(timer);
         }
     }, 1000);
@@ -47,6 +48,19 @@ button2.addEventListener('click', function () {
         dashMother.appendChild(newDiv);
     }
 
+    const mydashes = document.querySelectorAll('.mydashes');
+
     // For debugging: Display the selected word in the console
     console.log(`Selected word: ${selectedWord}`);
+
+    document.addEventListener('keydown', function (e) {
+        const letter = e.key.toLowerCase(); // Get the pressed key and convert to lowercase
+
+        // Check if the letter is in the selected word
+        for (let k = 0; k < selectedWord.length; k++) {
+            if (letter === selectedWord[k]) {
+                mydashes[k].textContent = selectedWord[k]; // Update the corresponding dash
+            }
+        }
+    });
 });
